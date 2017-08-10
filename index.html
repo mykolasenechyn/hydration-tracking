@@ -1,0 +1,83 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>hydration-tracker</title>
+<link href="style.css" rel="stylesheet" type="text/css" media="screen">
+</head>
+
+<body>
+
+<div class="init-container">
+
+	<div>Daily Target</div>
+    <input type="text" id="target" >
+    <div><button id="fs-tg-save">Save Settings</button></div>
+
+</div>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script>
+
+if(localStorage.getItem('htapp') === null){
+	var init = {
+		first: true,
+		target: 0,
+		start: 0
+	}
+} else {
+	var init = JSON.parse(localStorage.getItem('htapp'));
+}
+	
+if(init.first == true){
+	firstStart();
+} else {
+	$('init-container').hide();
+}
+	
+function firstStart(){ 
+	var inputTarget = $('#target');
+	var date, d, m, y;
+	
+	date = new Date();
+	d = date.getDate();
+	m = date.getMonth();
+	y = date.getFullYear();
+	
+	var startDate = d+'/'+m+'/'+y; // set current date
+	
+	$('#fs-tg-save').on('click', function(){
+		
+		var errors = [];
+	
+		if(inputTarget.val() == ''){ // check target set
+			errors.push('Please enter a daily goal');
+		}
+		
+		if(errors.length <= 0){ // continue	
+			init.target = inputTarget.val();
+			init.start = startDate;
+			
+			init.first = false;
+			console.log('setup success');
+			console.log(init);
+			localStorage.setItem('htapp', JSON.stringify(init));
+		} else { // errors output to user
+			var outputErrors = '';
+			
+			for(var i=0; i< errors.length; i++){
+				outputErrors += errors[i]+'\n';
+				console.log(errors[i]);
+			}	
+			
+			alert(outputErrors);
+		}
+			
+	});
+	
+}
+
+</script>
+</body>
+</html>
