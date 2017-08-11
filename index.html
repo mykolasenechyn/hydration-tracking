@@ -23,17 +23,19 @@
 if(localStorage.getItem('htapp') === null){
 	var init = {
 		first: true,
+		start: '',
 		target: 0,
-		start: 0
+		units: 'metric'
 	}
+	
+	firstStart();
+	
 } else {
 	var init = JSON.parse(localStorage.getItem('htapp'));
-}
 	
-if(init.first == true){
-	firstStart();
-} else {
-	$('init-container').hide();
+	$('.init-container').hide();
+	
+	console.log('profile found');
 }
 	
 function firstStart(){ 
@@ -60,9 +62,10 @@ function firstStart(){
 			init.start = startDate;
 			
 			init.first = false;
+			
 			console.log('setup success');
-			console.log(init);
-			localStorage.setItem('htapp', JSON.stringify(init));
+			
+			localStorage.setItem('htapp', JSON.stringify(init)); // save settings
 		} else { // errors output to user
 			var outputErrors = '';
 			
