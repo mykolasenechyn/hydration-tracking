@@ -3,7 +3,41 @@
 <head>
 <meta charset="utf-8">
 <title>hydration-tracker</title>
-<link href="style.css" rel="stylesheet" type="text/css" media="screen">
+<link href="style.css" rel="stylesheet" type="text/css" media="screen" >
+<link href="css/font-awesome.min.css" rel="stylesheet" type="text/css" >
+<style>
+
+.viewport-container{ width: 300px; height: 500px; margin: 50px auto; background-color: #FFFFFF; position: relative; }
+
+.viewport-container .land-container{ width: 100%; height: 252px; position: relative; }
+
+.viewport-container .land-container .lc-sky{ width: 100%; height: 240px; position: relative; z-index: 2;}
+.viewport-container .land-container.day .lc-sky{ background-image: url(images/sky-day.png); }
+.viewport-container .land-container.night .lc-sky{ background-image:url(images/sky-night.png); }
+
+.viewport-container .land-container .lc-planet{ width: 88px; height: 88px; position: absolute; z-index: 3; }
+.viewport-container .land-container.day .lc-planet{ background-image:url(images/sun.png); top: 25px; left: 20px; }
+.viewport-container .land-container.night .lc-planet{ background-image:url(images/moon.png); top: 50px; right: 20px; }
+
+.viewport-container .land-container .lc-grass{ width: 100%; height: 90px; position: absolute; bottom: 0px; z-index: 4; }
+.viewport-container .land-container.day .lc-grass{ background-image: url(images/grass-day.png); }
+.viewport-container .land-container.night .lc-grass{ background-image: url(images/grass-night.png); }
+
+.viewport-container .water-container{ width: 100%; height: 280px; position: absolute; bottom: 0px; left:0px; z-index: 5; }
+.viewport-container .water-container .wc-wave{ width: 100%; height: 65px; background-image: url(images/wave-still.png); }
+
+.viewport-container .water-container .wc-content{ width: 100%; height: 215px; background-color: #5981D3; }
+.viewport-container .water-container .wc-content .wcc-progress-container{ width: 170px; height: 100px; margin: 0 auto; }
+.viewport-container .water-container .wc-content .wcc-progress-container .wcc-progress-done{ width: 100%; font-size: 50px; font-weight: bold; color: #FFFFFF; text-align: center; }
+.viewport-container .water-container .wc-content .wcc-progress-container .wcc-progress-target{ width: 100%; font-size: 18px; color: #ACC0E9; text-align: center; }
+
+.viewport-container .water-container .wc-content .wcc-log{ width: 40px; height: 40px; margin: 15px auto; background-color: #9AB3E4; border-radius: 20px; color: #FFFFFF; text-align: center; line-height: 41px; cursor: pointer; }
+
+.viewport-container .water-container .wc-content .wcc-pages{ width: 42px; margin: 25px auto; overflow: auto; }
+.viewport-container .water-container .wc-content .wcc-pages ul{ list-style: none; font-size: 10px; }
+.viewport-container .water-container .wc-content .wcc-pages ul li{ float: left; margin: 0 6px; color: #ACC0E9; }
+.viewport-container .water-container .wc-content .wcc-pages ul li.active{ color: #D6DFF4; }
+</style>
 </head>
 
 <body>
@@ -17,9 +51,39 @@
 </div>
 
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script>
+<div class="viewport-container">
+	
+    <div class="land-container night">
+    	<div class="lc-sky"></div>
+        <div class="lc-planet"></div>
+        <div class="lc-grass"></div>
+    </div>
+    
+	<div class="water-container">
+    	<div class="wc-wave"></div>
+        <div class="wc-content">
+        
+        	<div class="wcc-progress-container">
+            	<div class="wcc-progress-done">900 ml</div>
+                <div class="wcc-progress-target">of 3 litres</div>
+            </div>
+            <div class="wcc-log"><i class="fa fa-plus" aria-hidden="true"></i></div>
+            <div class="wcc-pages">
+            	<ul>
+                	<li><i class="fa fa-circle" aria-hidden="true"></i></li>
+                    <li class="active"><i class="fa fa-circle" aria-hidden="true"></i></li>
+                </ul>
+            </div>
+        
+        </div>
+    </div>
 
+</div>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="js/function.first-run.js"></script>
+<script>
 if(localStorage.getItem('htapp') === null){
 	var init = {
 		first: true,
@@ -37,50 +101,7 @@ if(localStorage.getItem('htapp') === null){
 	
 	console.log('profile found');
 }
-	
-function firstStart(){ 
-	var inputTarget = $('#target');
-	var date, d, m, y;
-	
-	date = new Date();
-	d = date.getDate();
-	m = date.getMonth();
-	y = date.getFullYear();
-	
-	var startDate = d+'/'+m+'/'+y; // set current date
-	
-	$('#fs-tg-save').on('click', function(){
-		
-		var errors = [];
-	
-		if(inputTarget.val() == ''){ // check target set
-			errors.push('Please enter a daily goal');
-		}
-		
-		if(errors.length <= 0){ // continue	
-			init.target = inputTarget.val();
-			init.start = startDate;
-			
-			init.first = false;
-			
-			console.log('setup success');
-			
-			localStorage.setItem('htapp', JSON.stringify(init)); // save settings
-		} else { // errors output to user
-			var outputErrors = '';
-			
-			for(var i=0; i< errors.length; i++){
-				outputErrors += errors[i]+'\n';
-				console.log(errors[i]);
-			}	
-			
-			alert(outputErrors);
-		}
-			
-	});
-	
-}
-
 </script>
+
 </body>
 </html>
