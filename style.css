@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto:400,700');
 
-body{ background-color: #E2E2E2; font-family: 'Roboto', sans-serif; }
+body{ background-color: #E2E2E2; font-family: 'Roboto', sans-serif; padding: 0px; margin: 0px; }
 
 ul{ -webkit-margin-before: 0em; -webkit-margin-after: 0em; -webkit-margin-start: 0px; -webkit-margin-end: 0px; -webkit-padding-start: 0px;}
 
@@ -8,7 +8,7 @@ ul{ -webkit-margin-before: 0em; -webkit-margin-after: 0em; -webkit-margin-start:
 
 .viewport-container .land-container{ width: 100%; height: 260px; position: relative; }
 
-.viewport-container .land-container .lc-sky{ width: 100%; height: 240px; position: relative; z-index: 2;}
+.viewport-container .land-container .lc-sky{ width: 100%; height: 240px; position: relative; z-index: 2; background-repeat: no-repeat; background-size: cover;}
 .viewport-container .land-container.day .lc-sky{ background-image: url(images/svg/sky-day.svg); }
 .viewport-container .land-container.night .lc-sky{ background-image:url(images/svg/sky-night.svg); }
 
@@ -17,16 +17,15 @@ ul{ -webkit-margin-before: 0em; -webkit-margin-after: 0em; -webkit-margin-start:
 .viewport-container .land-container.night .lc-planet{ background-image:url(images/svg/moon.svg); top: 50px; right: 20px; }
 
 .viewport-container .land-container .lc-grass{ width: 100%; height: 90px; position: absolute; bottom: 0px; z-index: 4; }
-.viewport-container .land-container.day .lc-grass{ background-image: url(images/svg/grass-day.svg); }
-.viewport-container .land-container.night .lc-grass{ background-image: url(images/svg/grass-night.svg); }
+.viewport-container .land-container.day .lc-grass{ background: url('images/svg/grass-day.svg') no-repeat; background-size: cover; }
+.viewport-container .land-container.night .lc-grass{ background: url('images/svg/grass-night.svg') no-repeat; background-size: cover;}
 
 .viewport-container .water-container{ width: 100%; height: 280px; position: absolute; bottom: 0px; left:0px; z-index: 5; overflow: hidden; }
-.viewport-container .water-container .wc-wave{ width: 100%; height: 65px; background-image: url(images/svg/wave-still.svg); background-repeat: no-repeat; }
+.viewport-container .water-container .wc-wave{ width: 100%; height: 65px; background: url('images/svg/wave-still.svg') no-repeat; background-size: cover; }
 
 .viewport-container .water-container .wc-content{ width: 100%; height: 215px; background-color: #5981D3; position: relative; }
 
 .viewport-container .water-container .wc-content .wcc-pages{ width: 200%; position: absolute; left: -100%; transition: 0.5s all ease-in-out; }
-
 .viewport-container .water-container .wc-content .wcc-page{ width: 50%; height: 155px; float: left; }
 
 .viewport-container .water-container .wc-content .wcc-progress-container{ width: 170px; height: 100px; margin: 0 auto; }
@@ -36,7 +35,7 @@ ul{ -webkit-margin-before: 0em; -webkit-margin-after: 0em; -webkit-margin-start:
 
 .viewport-container .water-container .wc-content .wcc-log{ width: 40px; height: 40px; margin: 15px auto; background-color: #9AB3E4; border-radius: 20px; color: #FFFFFF; text-align: center; line-height: 41px; cursor: pointer; }
 
-.viewport-container .water-container .wc-content .wcc-current-page{ width: 300px; margin: 25px auto; position: absolute; top: 156px; }
+.viewport-container .water-container .wc-content .wcc-current-page{ width: 100%; margin: 25px auto; position: absolute; top: 156px; }
 .viewport-container .water-container .wc-content .wcc-current-page ul{ list-style: none; font-size: 10px; width: 42px; margin: 0 auto; }
 .viewport-container .water-container .wc-content .wcc-current-page ul li{ float: left; margin: 0 6px; color: #ACC0E9; }
 .viewport-container .water-container .wc-content .wcc-current-page ul li.active{ color: #D6DFF4; }

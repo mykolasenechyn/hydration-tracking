@@ -1,3 +1,5 @@
 @media screen and (max-width: 720px){
-	.viewport-container{ width: 300px; height: 500px; margin: 0px auto; background-color: #FFFFFF; position: relative; }
+	/*.viewport-container{ width: 300px; height: 500px; margin: 0px auto; background-color: #FFFFFF; position: relative; }*/
+	.viewport-container{ width: 100%; height: auto; top: 0px; bottom: 0px; margin: 0px auto; background-color: #FFFFFF; position: absolute; }
+	.viewport-container .land-container .lc-grass{ height: 120px; }
 }

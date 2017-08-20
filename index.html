@@ -9,8 +9,6 @@
 <link href="css/responsive.css" rel="stylesheet" type="text/css" >
 <style>
 
-
-
 </style>
 </head>
 
@@ -73,48 +71,8 @@
 
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script src="js/function.first-run.js"></script>
 <script src="js/jquery.touchSwipe.min.js"></script>
-<script>
-$(function() {
-	if(localStorage.getItem('htapp') === null || typeof init != "undefined"){
-		var init = {
-			first: true,
-			start: '',
-			target: 0,
-			units: 'metric'
-		}
-
-		firstStart();
-
-	} else {
-		var init = JSON.parse(localStorage.getItem('htapp'));
-
-		$('.init-container').hide();
-
-		console.log('profile found');
-	}
-
-	 $(".water-container .wc-content").swipe( {
-        //Generic swipe handler for all directions
-        swipe:function(event, direction, distance, duration, fingerCount, fingerData) {
-        	if(direction == 'right'){
-				$('.wc-content .wcc-pages').css('left','0');
-				$('.wc-content .wcc-current-page ul li:nth-child(2)').removeClass('active');
-				$('.wc-content .wcc-current-page ul li:nth-child(1)').addClass('active');
-			}
-
-			if(direction == 'left'){
-				$('.wc-content .wcc-pages').css('left','-100%');
-				$('.wc-content .wcc-current-page ul li:nth-child(1)').removeClass('active');
-				$('.wc-content .wcc-current-page ul li:nth-child(2)').addClass('active');
-			}
-        }
-
-      });
-
-});
-</script>
-
+<script src="js/application.js"></script>
+<script src="js/viewport.responsive.js"></script>
 </body>
 </html>
